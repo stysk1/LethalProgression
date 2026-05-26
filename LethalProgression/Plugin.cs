@@ -20,9 +20,9 @@ namespace LethalProgression;
 [BepInPlugin(modGUID, modName, modVersion)]
 internal class LethalPlugin : BaseUnityPlugin
 {
-    private const string modGUID = "TisRyno.LethalProgression";
+    private const string modGUID = "stysk1.LethalProgression";
     private const string modName = "Lethal Progression";
-    private const string modVersion = "2.1.1";
+    private const string modVersion = "2.1.2";
     public static AssetBundle skillBundle;
 
     internal static ManualLogSource Log;

@@ -5,10 +5,10 @@ schemaVersion = "0.0.1"
 repository = "https://thunderstore.io"
 
 [package]
-namespace = "TisRyno"
-name = "LethalCompanyProgressionPatchFix"
+namespace = "stysk1"
+name = "LethalProgression"
 description = "An RPG-style XP-based levelling and skillpoint system, with a full custom GUI to manage your points."
-websiteUrl = "https://github.com/TisRyno/LethalProgression"
+websiteUrl = "https://github.com/stysk1/LethalProgression"
 containsNsfwContent = false
 
 [package.dependencies]
