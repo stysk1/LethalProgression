@@ -1,55 +1,37 @@
-name: Release
+name: Build & Release
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+    tags: [ "v*" ]
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
-
+  build:
+    runs-on: windows-latest
     steps:
-      - uses: google-github-actions/release-please-action@v4
-        id: release
-        with:
-          release-type: simple
+      - uses: actions/checkout@v4
 
-  publish:
-    needs: release
-    runs-on: ubuntu-latest
-    if: ${{ needs.release.outputs.release_created }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
         with:
-          # Necessary to retrieve the latest tag name
-          # MinVer will search for the latest tag to determine the new version
-          fetch-depth: 0
+          dotnet-version: '8.0.x'
 
-      - name: Initialization
-        uses: ./.github/actions/init
-        with:
-          thunderstore-client: true
+      - name: Restore tools
+        run: dotnet tool restore
 
       - name: Build
-        run: dotnet build
-        env:
-          BuildThunderstorePackage: true
+        run: dotnet build LethalProgression/LethalProgression.csproj -c Release
 
-      - name: Publish to Thunderstore
-        run: tcli publish --config-path thunderstore.toml --file build/*.zip
-        env:
-          TCLI_AUTH_TOKEN: ${{ secrets.THUNDERSTORE_AUTH_TOKEN }}
+      - name: Package Thunderstore zip
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: ./package.ps1
 
-      - name: Upload artifact
-        run: gh release upload ${{ needs.release.outputs.tag_name }} build/*.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Attach zip to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
