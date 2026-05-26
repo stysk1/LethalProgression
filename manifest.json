@@ -1,6 +1,6 @@
 {
   "name": "LethalProgression",
-  "version_number": "2.0.0",
+  "version_number": "2.1.0",
   "website_url": "https://github.com/stysk1/LethalProgression",
   "description": "Leveling and skillpoints! XP, levels, and upgradeable stats for your crew.",
   "dependencies": [

@@ -22,7 +22,7 @@ internal class LethalPlugin : BaseUnityPlugin
 {
     private const string modGUID = "TisRyno.LethalProgression";
     private const string modName = "Lethal Progression";
-    private const string modVersion = "2.2.1";
+    private const string modVersion = "2.1.0";
     public static AssetBundle skillBundle;
 
     internal static ManualLogSource Log;
@@ -69,6 +69,11 @@ internal class LethalPlugin : BaseUnityPlugin
         LessShitConfigSystem.RegisterSection<IStaminaConfig>();
         LessShitConfigSystem.RegisterSection<IStrengthConfig>();
         LessShitConfigSystem.RegisterSection<IShipHangarDoorConfig>();
+        LessShitConfigSystem.RegisterSection<INightVisionConfig>();
+        LessShitConfigSystem.RegisterSection<IFlashlightOverdriveConfig>();
+        LessShitConfigSystem.RegisterSection<IScanRadiusConfig>();
+        LessShitConfigSystem.RegisterSection<ISneakConfig>();
+        LessShitConfigSystem.RegisterSection<ISilentConfig>();
         LessShitConfigSystem.RegisterSection<IUIConfig>();
         
         LessShitConfigSystem.Bake(Config);

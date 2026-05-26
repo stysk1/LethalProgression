@@ -57,8 +57,16 @@ internal class PlayerControllerBPatch
 
         codes = JumpHeight.PlayerJumpOpCode(codes);
         codes = SprintSpeed.PlayerSprintSpeedOpCode(codes);
+        codes = Sneak.CrouchSpeedOpCode(codes);
 
         return codes;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PlayerControllerB), "SetNightVisionEnabled")]
+    private static void SetNightVisionEnabledPostfix(PlayerControllerB __instance)
+    {
+        NightVision.ApplyNightVisionBoost(__instance);
     }
 
     /// <summary>

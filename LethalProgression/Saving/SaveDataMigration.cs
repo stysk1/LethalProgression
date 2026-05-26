@@ -7,6 +7,18 @@ namespace LethalProgression.Saving;
 
 internal static class SaveDataMigration
 {
+    // Legacy saves may contain skill keys (e.g. "Oxygen") that no longer exist in UpgradeType.
+    // Drop those entries rather than failing the whole migration.
+    private static readonly JsonSerializerSettings LenientSettings = new()
+    {
+        Error = (sender, args) =>
+        {
+            string path = args.ErrorContext?.Path ?? "(unknown)";
+            LethalPlugin.Log.LogWarning($"Skipping unrecognised value during save migration at '{path}': {args.ErrorContext?.Error?.Message}");
+            args.ErrorContext.Handled = true;
+        }
+    };
+
     public static void MigrateOldSaves()
     {
         LethalPlugin.Log.LogInfo("Checking for legacy save files to migrate.");
@@ -60,7 +72,7 @@ internal static class SaveDataMigration
 
                 string json = File.ReadAllText(file);
 
-                SaveSharedData currentData = JsonConvert.DeserializeObject<SaveSharedData>(json);
+                SaveSharedData currentData = JsonConvert.DeserializeObject<SaveSharedData>(json, LenientSettings);
 
                 LethalPlugin.Log.LogInfo($"Old data: {currentData}");
 
@@ -74,7 +86,7 @@ internal static class SaveDataMigration
 
                 LethalPlugin.Log.LogInfo($"Parsed Steam ID: {steamId}");
 
-                SaveData saveData = JsonConvert.DeserializeObject<SaveData>(playerJson);
+                SaveData saveData = JsonConvert.DeserializeObject<SaveData>(playerJson, LenientSettings);
 
                 LethalPlugin.Log.LogInfo($"Old data: {saveData}");
 

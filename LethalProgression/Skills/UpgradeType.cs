@@ -12,4 +12,9 @@ public enum UpgradeType
     Strength,
     MaxHealth,
     ShipDoorBattery,
+    NightVision,
+    FlashlightOverdrive,
+    ScanRadius,
+    Sneak,
+    Silent,
 }

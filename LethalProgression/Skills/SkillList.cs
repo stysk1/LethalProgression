@@ -36,6 +36,11 @@ internal class SkillList
         IJumpHeightConfig jumpHeightConfig = LessShitConfigSystem.GetActive<IJumpHeightConfig>();
         ISprintSpeedConfig sprintSpeedConfig = LessShitConfigSystem.GetActive<ISprintSpeedConfig>();
         IShipHangarDoorConfig shipDoorBatteryConfig = LessShitConfigSystem.GetActive<IShipHangarDoorConfig>();
+        INightVisionConfig nightVisionConfig = LessShitConfigSystem.GetActive<INightVisionConfig>();
+        IFlashlightOverdriveConfig flashlightOverdriveConfig = LessShitConfigSystem.GetActive<IFlashlightOverdriveConfig>();
+        IScanRadiusConfig scanRadiusConfig = LessShitConfigSystem.GetActive<IScanRadiusConfig>();
+        ISneakConfig sneakConfig = LessShitConfigSystem.GetActive<ISneakConfig>();
+        ISilentConfig silentConfig = LessShitConfigSystem.GetActive<ISilentConfig>();
 
         if (hpConfig.isEnabled)
             skills.Add(UpgradeType.HPRegen, new HPRegen());
@@ -66,5 +71,20 @@ internal class SkillList
 
         if (shipDoorBatteryConfig.isEnabled)
             skills.Add(UpgradeType.ShipDoorBattery, new ShipDoorBattery());
+
+        if (nightVisionConfig.isEnabled)
+            skills.Add(UpgradeType.NightVision, new NightVision());
+
+        if (flashlightOverdriveConfig.isEnabled)
+            skills.Add(UpgradeType.FlashlightOverdrive, new FlashlightOverdrive());
+
+        if (scanRadiusConfig.isEnabled)
+            skills.Add(UpgradeType.ScanRadius, new ScanRadius());
+
+        if (sneakConfig.isEnabled)
+            skills.Add(UpgradeType.Sneak, new Sneak());
+
+        if (silentConfig.isEnabled)
+            skills.Add(UpgradeType.Silent, new Silent());
     }
 }
