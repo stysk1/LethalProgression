@@ -123,10 +123,8 @@
         <PackageReference Include="LethalCompany.GameLibs.Steam" Version="$(GameVersion)" PrivateAssets="all" />
     </ItemGroup>
 
-    <!-- Asset bundle is embedded in the DLL via Properties/Resources.resx, no separate copy needed -->
-    <!-- <Target Condition="$(CI) != 'true'" Name="Resource" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(SolutionDir)skillmenu" DestinationFiles="$(OutputPath)skillmenu" />
-    </Target> -->
+    <!-- Plugin.cs loads skillmenu from disk via AssetBundle.LoadFromFile, so the bundle must
+         ship alongside the DLL. deploy.ps1 / package.ps1 each copy it into their output. -->
 
      <!-- Move the plugin to the game's plugin directory and start the game to test it -->
     <Target Condition="$(CI) != 'true' And $(StartGame)" Name="StartGame" AfterTargets="PostBuildEvent">

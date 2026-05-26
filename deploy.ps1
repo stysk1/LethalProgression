@@ -4,7 +4,8 @@
     Build the mod and deploy it to an r2modman profile for local testing.
 .DESCRIPTION
     Copies the DLL to BepInEx\plugins\stysk1-LethalProgression\ and upserts the mod entry in
-    mods.yml so r2modman recognises the mod. The skillmenu AssetBundle is embedded in the DLL.
+    mods.yml so r2modman recognises the mod. The skillmenu AssetBundle is copied next to the
+    DLL — Plugin.cs loads it from disk at runtime via AssetBundle.LoadFromFile.
 .EXAMPLE
     ./deploy.ps1
 .EXAMPLE

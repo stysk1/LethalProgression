@@ -4,8 +4,9 @@
     Build the mod and assemble a Thunderstore-format zip in ./dist for sharing or upload.
 .DESCRIPTION
     Produces dist/<name>-<version>.zip (name + version from manifest.json), flat layout:
-    manifest.json, icon.png, README.md, CHANGELOG.md, LethalProgression.dll.
-    The skillmenu AssetBundle is embedded in the DLL — no separate bundle file needed.
+    manifest.json, icon.png, README.md, CHANGELOG.md, LethalProgression.dll, skillmenu.
+    Plugin.cs loads the skillmenu AssetBundle from disk via AssetBundle.LoadFromFile,
+    so the bundle must ship alongside the DLL.
 .EXAMPLE
     ./package.ps1
 #>
@@ -44,6 +45,10 @@ Copy-Item (Join-Path $root "icon.png")        (Join-Path $staging "icon.png")   
 Copy-Item (Join-Path $root "README.md")       (Join-Path $staging "README.md")       -Force
 Copy-Item (Join-Path $root "CHANGELOG.md")    (Join-Path $staging "CHANGELOG.md")    -Force
 Copy-Item $dll                                (Join-Path $staging "LethalProgression.dll") -Force
+
+$bundle = Join-Path $root "skillmenu"
+if (-not (Test-Path $bundle)) { throw "skillmenu bundle not found at repo root: $bundle" }
+Copy-Item $bundle                             (Join-Path $staging "skillmenu") -Force
 
 $zip = Join-Path $dist "$name-$version.zip"
 if (Test-Path $zip) { Remove-Item $zip -Force }
