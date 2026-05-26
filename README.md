@@ -8,7 +8,7 @@ As you collect scrap for the company you will be rewarded with points to spend t
 
 This mod adds a XP based GUI levelling system with a range of upgrade types to spend your points on.
 
-The original mod was created by [Stoneman2](https://github.com/stoneman2/LethalProgression) but is no longer maintained and not compatible with v60+ or other popular mods.
+The original mod was created by [Stoneman2](https://github.com/stoneman2/LethalProgression). [TisRyno](https://github.com/TisRyno/LethalProgression) rebuilt and maintained it with significant improvements. This fork brings it up to v81.
 
 > [!IMPORTANT]
 > Everyone needs this mod for it to work
@@ -21,9 +21,10 @@ After installing the mod, just hit the Esc key and you should see the Skills men
 
 ### Current Available Upgrades:
 - Health Regeneration
-- Maximum Health 
+- Maximum Health
 - Stamina
 - Battery Life
+- Ship Door Battery
 - Hand Slots (Disabled if you have ReservedItemCore)
 - Loot Value (Shared by whole team)
 - Strength (Carry weight reduction)
@@ -72,10 +73,22 @@ _As an example, if the Battery Life skill has a multiplier of 5, then for each s
 - Some mods that change what scrap has spawned in, or it's value, occasionnally overwrite the Loot Value perk
     - This mod has been built to attempt to be compatible with BrutalCompanyMinus
 
+## Host Commands
+
+The host can grant skill points to players via the in-game chat:
+
+```
+/levelup                  # grant 1 point to yourself
+/levelup 3                # grant 3 points to yourself
+/levelup PlayerName       # grant 1 point to a player
+/levelup 3 PlayerName     # grant 3 points to a player
+```
+
 ## Credits:
 - Dat1Mew for the updated logo
 - daisuu.__ for bug-testing
 - Stoneman2 for original mod
+- TisRyno for the v2 rebuild
 - CatsArmy for critical bug fix
 
 # Installation

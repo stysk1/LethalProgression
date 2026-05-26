@@ -24,6 +24,12 @@ jobs:
       - name: Build
         run: dotnet build LethalProgression/LethalProgression.csproj -c Release
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: LethalProgression
+          path: LethalProgression/bin/LethalProgression.dll
+
       - name: Package Thunderstore zip
         if: startsWith(github.ref, 'refs/tags/v')
         shell: pwsh
