@@ -24,7 +24,10 @@
         <!-- Version of the game supported by the plugin -->
         <!-- The value must be the same than the one in CI/CD -->
         <!-- https://www.nuget.org/packages/LethalCompany.GameLibs.Steam -->
-        <GameVersion>70.0.0-ngd.0</GameVersion>
+        <GameVersion>81.0.5-ngd.0</GameVersion>
+
+        <!-- MinVer will auto-derive from git tags (v*.*.* format), fallback if not present -->
+        <MinVerAutoIncrement>minor</MinVerAutoIncrement>
 
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
@@ -120,9 +123,10 @@
         <PackageReference Include="LethalCompany.GameLibs.Steam" Version="$(GameVersion)" PrivateAssets="all" />
     </ItemGroup>
 
-    <Target Condition="$(CI) != 'true'" Name="Resource" AfterTargets="PostBuildEvent">
+    <!-- Asset bundle is embedded in the DLL via Properties/Resources.resx, no separate copy needed -->
+    <!-- <Target Condition="$(CI) != 'true'" Name="Resource" AfterTargets="PostBuildEvent">
         <Copy SourceFiles="$(SolutionDir)skillmenu" DestinationFiles="$(OutputPath)skillmenu" />
-    </Target>
+    </Target> -->
 
      <!-- Move the plugin to the game's plugin directory and start the game to test it -->
     <Target Condition="$(CI) != 'true' And $(StartGame)" Name="StartGame" AfterTargets="PostBuildEvent">
@@ -139,6 +143,21 @@
         <!-- The ping command is used to apply a delay between each instance, otherwise only one BepInEx debug terminal would be opened -->
         <!-- Use ping command is a workaround because Windows doesn't have a sleep command -->
         <Exec Command="for /L %%i in (1,1,$(NumberOfClients)) do (start &quot;&quot; &quot;$(GameExePath)&quot; &amp; if %%i lss $(NumberOfClients) (ping 127.0.0.1 -n $(PingDelay) &gt; nul))" />
+    </Target>
+
+    <!-- Restore dotnet tools before netcode patching -->
+    <Target Name="RestoreTools" BeforeTargets="NetcodePatch">
+        <Exec Command="dotnet tool restore" />
+    </Target>
+
+    <!-- Re-inject Unity Netcode RPC/NetworkVariable plumbing post-build.
+         netcode 1.12.0 is for game v73+ (v81 uses 1.12.0).
+         Dependency directories (deduped) avoid Windows 8191-char command-line limit on CI. -->
+    <Target Name="NetcodePatch" AfterTargets="PostBuildEvent">
+        <ItemGroup>
+            <NetcodePatchDepDir Include="@(ReferencePathWithRefAssemblies->'%(RootDir)%(Directory)'->Distinct())" />
+        </ItemGroup>
+        <Exec Command="dotnet netcode-patch -uv 2022.3.62 -nv 1.12.0 -tv 1.0.0 &quot;$(TargetPath)&quot; @(NetcodePatchDepDir->'&quot;%(Identity).&quot;', ' ')" />
     </Target>
 
     <!-- Build the plugin for Thunderstore publication -->
