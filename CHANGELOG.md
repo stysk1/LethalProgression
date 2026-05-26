@@ -1,5 +1,71 @@
 # Changelog
 
+## 1.0.0 (2026-05-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* v2.0.0
+
+### Features
+
+* add starting skill points config ([9027160](https://github.com/stysk1/LethalProgression/commit/9027160d6cf8477c514516e5459d76ce684f2734))
+* bump version ([e308800](https://github.com/stysk1/LethalProgression/commit/e308800fd12f7be916adbf463b7b37055d9ed041))
+* manually cherrypick the fixes ([7a69f00](https://github.com/stysk1/LethalProgression/commit/7a69f00d6b34871c82c7a87328b7d6e0a70297ad))
+* max hp skill ([99a7dfc](https://github.com/stysk1/LethalProgression/commit/99a7dfc6bb6104c11495836f2ebe730125ba6736))
+* max hp skill ([94f6546](https://github.com/stysk1/LethalProgression/commit/94f6546479362df7147a0093454d0656c3f23f1d))
+* merge PR [#26](https://github.com/stysk1/LethalProgression/issues/26) for new config setting ([4a041d1](https://github.com/stysk1/LethalProgression/commit/4a041d1274cf4453e1af2ff4414316a022f90942))
+* new config setup ([0aa76c4](https://github.com/stysk1/LethalProgression/commit/0aa76c4426b44d53de0ac7e3260737da0578b7c6))
+* new networking and lots of bug fixes ([214de7e](https://github.com/stysk1/LethalProgression/commit/214de7ea872641ada627fc3400ef988a0309fb1a))
+* remove check for mikestweaks compatibility ([7fd1e2f](https://github.com/stysk1/LethalProgression/commit/7fd1e2ff429109bd93865f57107bbcef453063a5))
+* remove oxygen skill ([d7a216b](https://github.com/stysk1/LethalProgression/commit/d7a216b96d6ac9d7237c342eefe96909449e4718))
+* ship hangar door skill added ([0ab8c2a](https://github.com/stysk1/LethalProgression/commit/0ab8c2a72436985979afc3a687ee01d0e2f58ff1))
+* sprint speed transpiler improved ([5cdd58a](https://github.com/stysk1/LethalProgression/commit/5cdd58a764a16454f9271228fcbacd298b870b37))
+* support LCBetterSaves by switching saving strategy to ES3 ([1afc2cd](https://github.com/stysk1/LethalProgression/commit/1afc2cd8f6d78fc48a71bfaa35bd700d4a2f771b))
+* UI config and new assetbundle method ([87aaa8d](https://github.com/stysk1/LethalProgression/commit/87aaa8d760a9922b22044654169d42ada83e85b4))
+* v2.0.0 ([278796d](https://github.com/stysk1/LethalProgression/commit/278796d43f3aebe276b2a66daa8fcd507e98354d))
+
+
+### Bug Fixes
+
+* **#47:** hpregen spamming logs ([099439a](https://github.com/stysk1/LethalProgression/commit/099439ae987ba48e0644154e4fb233c9beeab81a))
+* actual default jump height (sorry) ([659bc0f](https://github.com/stysk1/LethalProgression/commit/659bc0fcf878b150356c99f5e42f136bebcac66c))
+* allow disabling enemy xp gain due to infinite xp issues ([6f95aff](https://github.com/stysk1/LethalProgression/commit/6f95aff4ea5f624d020a5f9a025f192c45e933d6))
+* cannot go below 0 points in a skill ([5612576](https://github.com/stysk1/LethalProgression/commit/561257639948678b3e4508b54a87dc3f17ddaded))
+* config did not match the functionality ([c4e9739](https://github.com/stysk1/LethalProgression/commit/c4e9739fdfec80dc996734b2f8daaf1fa728393e))
+* config system now works! ([9a1420c](https://github.com/stysk1/LethalProgression/commit/9a1420c57f2475f7021534ca372b687d39505480))
+* debug spam on scrap multiplier ([5f8d276](https://github.com/stysk1/LethalProgression/commit/5f8d2767c4e1285de2d821e72751395ecd4ce0fd))
+* default jump height was incorrect ([1cbc7b8](https://github.com/stysk1/LethalProgression/commit/1cbc7b841c0a1942dd660d35964192f19098b6fd))
+* disconnect error ([17fd5a9](https://github.com/stysk1/LethalProgression/commit/17fd5a945c34f576d44b7679c15060d29e7b3d3a))
+* dummy commit to be able to release ([4d60b73](https://github.com/stysk1/LethalProgression/commit/4d60b73feb732857949137f3f2af5520ef081a48))
+* ensure 1s is the max cap when critical ([de7caf3](https://github.com/stysk1/LethalProgression/commit/de7caf3724c5b16cd0e3ae9b1734e2183faa9773))
+* ensure skill point addition is pre-setting for syncing reasons ([3f9665e](https://github.com/stysk1/LethalProgression/commit/3f9665e8bd8726be6b892c139404fe96b043e81a))
+* extra comma ([8544221](https://github.com/stysk1/LethalProgression/commit/854422160ce2e92b3d3f80e6765d5051cd4a052e))
+* game object cleanup ([9d930e7](https://github.com/stysk1/LethalProgression/commit/9d930e79c99ca27f24200b463af12d3702dcceb3))
+* HP HUD updating for everyone when one player takes damage ([0ea240e](https://github.com/stysk1/LethalProgression/commit/0ea240e11659ac0669f6f056d8cdfe2716e4b51f))
+* hp regen allowing instant death (whoops) ([12dbb78](https://github.com/stysk1/LethalProgression/commit/12dbb78532f2aca05705e5587be13a062463ccd2))
+* hp regen exceeding max hp ([715a188](https://github.com/stysk1/LethalProgression/commit/715a18858bdfb41dc81221dcb1f958aead54c491))
+* hud was breaking when loot value skill disabled ([04f6205](https://github.com/stysk1/LethalProgression/commit/04f6205e0e8f2ef8d4533f3e736f98106c7b8232))
+* jump height back to local-only ([59d0f63](https://github.com/stysk1/LethalProgression/commit/59d0f6332afb73697a4003c5c927bc4cbd17add5))
+* jump height moved to transpiler ([8081874](https://github.com/stysk1/LethalProgression/commit/808187436b2314d25e2af597c63f2c895e400df6))
+* jump height no longer resets on death or returning to lobby ([e57095a](https://github.com/stysk1/LethalProgression/commit/e57095a44096966137b124b808fbace13094a03f))
+* jump height not syncing for all players ([a035893](https://github.com/stysk1/LethalProgression/commit/a0358934c4ff2c974325668e26161e07c9f7a497))
+* loot level not syncing correctly ([6f70cd4](https://github.com/stysk1/LethalProgression/commit/6f70cd42b06ddd425ce4273e86f0d3d379bb7988))
+* loot value applies with BrutalCompanyMinus ([069613d](https://github.com/stysk1/LethalProgression/commit/069613de1ce3a8a49c06e0ef53deb0520f6b5b6e))
+* max hp applies on revival ([48e10d7](https://github.com/stysk1/LethalProgression/commit/48e10d74d89023fa4e1d968b774c3809f7e6aef9))
+* missing patch ([80ca27c](https://github.com/stysk1/LethalProgression/commit/80ca27c28228d1be12795ba8a8b17915a2f99769))
+* re-enable critical injury regen timer ([21e7b82](https://github.com/stysk1/LethalProgression/commit/21e7b82eab3fc764621e91c1369191fdcc9f94f4))
+* remove jump update ([0787e3e](https://github.com/stysk1/LethalProgression/commit/0787e3e0e073736ee264a37b29db879707adb0ff))
+* save file issues ([42d1a89](https://github.com/stysk1/LethalProgression/commit/42d1a8950147d239b8e6b3b0a70a0716be913dcb))
+* starting skill points works from new save ([c6ba381](https://github.com/stysk1/LethalProgression/commit/c6ba381f5fe9a5187faca2527e7a9bc34a79c4b4))
+* stuff I forgot to commit 8 months ago ([dff04c5](https://github.com/stysk1/LethalProgression/commit/dff04c5bce0daf81a272210dada1cd778c33b8b5))
+* use correct getter ([f8c3978](https://github.com/stysk1/LethalProgression/commit/f8c3978c254ada84c3528ce786809193598885a7))
+
+
+### Performance Improvements
+
+* preload local config ([a88d02f](https://github.com/stysk1/LethalProgression/commit/a88d02fea4e7be08494994310702d1deb56cddef))
+
 ## [2.3.2](https://github.com/TisRyno/LethalProgression/compare/v2.3.1...v2.3.2) (2025-07-03)
 
 
